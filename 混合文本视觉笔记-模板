@@ -1,0 +1,28 @@
+---
+excalidraw-plugin: parsed
+excalidraw-open-md: true
+excalidraw-autoexport: svg
+---
+<%*
+  const PATH = app.plugins.plugins["templater-obsidian"].settings.templates_folder;
+  if(tp.file.folder(true) === PATH) throw(new Error("Cannibalization"));
+%>
+
+# [[<% tp.file.title%>]]
+
+![[<% tp.file.title%>.svg]]
+<%*
+  const path = (tp.file.folder() === "" ? "" : `${tp.file.folder(true)}/`) + `${tp.file.title}.svg`;
+  if(!app.vault.getAbstractFileByPath(path)) {
+	app.vault.create(path, `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="0" height="0"></svg>`);
+  }
+%>
+
+%%
+# Excalidraw Data
+## Text Elements
+## Drawing
+\`\`\`json
+{"type":"excalidraw","version":2,"source":"","elements":[],"appState":{}}
+\`\`\`
+%%
